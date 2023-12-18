@@ -14,7 +14,35 @@
 
 <title>Introduction to hexfont</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -132,7 +160,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -159,47 +367,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="overview" class="section level2">
 <h2><a name="overview">Overview</a></h2>
-<p>This is an R data package that includes every “hex” font file from the <a href="http://unifoundry.com/unifont/index.html">GNU Unifont</a> project compressed by <code>xz</code>. It includes a convenience function that loads several of them as a <a href="https://github.com/trevorld/bittermelon">{bittermelon}</a> <code>bm_font()</code> object. GNU Unifont is a duospaced bitmap font (8x16 and 16x16 glyphs) that pretty much covers all of the official Unicode glyphs plus several of the artificial scripts in the <a href="http://www.kreativekorp.com/ucsur/">(Under-)ConScript Unicode Registry</a>.</p>
+<p>This is an R data package that includes most “hex” font files from the <a href="http://unifoundry.com/unifont/index.html">GNU Unifont</a> project compressed by <code>xz</code>. It includes a convenience function that loads several of them as a <a href="https://github.com/trevorld/bittermelon">{bittermelon}</a> <code>bm_font()</code> object. GNU Unifont is a duospaced bitmap font (8x16 and 16x16 glyphs) that pretty much covers all of the official Unicode glyphs plus several of the artificial scripts in the <a href="http://www.kreativekorp.com/ucsur/">(Under-)ConScript Unicode Registry</a>.</p>
 </div>
 <div id="included-hex-font-files" class="section level2">
 <h2><a name="hex">Included hex font files</a></h2>
-<p><code>{hexfont}</code> includes all the hex font files included in the <a href="http://unifoundry.com/unifont/index.html">GNU Unifont</a> source code distribution. The version number is stripped from the file names in the <code>precompiled</code> directory and the hex fonts are all compressed by <code>xz</code> but other than that the hex fonts are otherwise unchanged.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hex_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;font&quot;</span>, <span class="at">package =</span> <span class="st">&quot;hexfont&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(hex_dir, <span class="at">pattern =</span> <span class="st">&quot;.hex.xz&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><code>{hexfont}</code> includes most of the hex font files included in the <a href="http://unifoundry.com/unifont/index.html">GNU Unifont</a> source code distribution. The version number is stripped from the file names in the <code>precompiled</code> directory and the hex fonts are all compressed by <code>xz</code> but other than that the hex fonts are otherwise unchanged. Due to CRAN size limitations we omit the “precompiled” <code>unifont_all</code> hex file (this is presumably the concatenation of the “precompiled” <code>unifont</code> and <code>unifont_upper</code> hex files).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>hex_dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;font&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;hexfont&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">list.files</span>(hex_dir, <span class="dt">pattern =</span> <span class="st">&quot;.hex.xz&quot;</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;plane00/alt/codepage-437.hex.xz&quot;           
-##  [2] &quot;plane00/alt/mongolian-vertical.hex.xz&quot;     
-##  [3] &quot;plane00/alt/phags-pa-vertical.hex.xz&quot;      
-##  [4] &quot;plane00/alt/quad-width.hex.xz&quot;             
-##  [5] &quot;plane00/alt/reiwa-vertical.hex.xz&quot;         
-##  [6] &quot;plane00/alt/uni0009-orig.hex.xz&quot;           
-##  [7] &quot;plane00/copyleft.hex.xz&quot;                   
-##  [8] &quot;plane00/custom00.hex.xz&quot;                   
-##  [9] &quot;plane00/hangul-syllables.hex.xz&quot;           
-## [10] &quot;plane00/izmg16-plane00.hex.xz&quot;             
-## [11] &quot;plane00/omit.hex.xz&quot;                       
-## [12] &quot;plane00/plane00-nonprinting.hex.xz&quot;        
-## [13] &quot;plane00/plane00-unassigned.hex.xz&quot;         
-## [14] &quot;plane00/pua.hex.xz&quot;                        
-## [15] &quot;plane00/spaces.hex.xz&quot;                     
-## [16] &quot;plane00/unifont-base.hex.xz&quot;               
-## [17] &quot;plane00/wqy.hex.xz&quot;                        
-## [18] &quot;plane00csur/plane00csur-nonprinting.hex.xz&quot;
-## [19] &quot;plane00csur/plane00csur-spaces.hex.xz&quot;     
-## [20] &quot;plane00csur/plane00csur.hex.xz&quot;            
-## [21] &quot;plane01/plane01-nonprinting.hex.xz&quot;        
-## [22] &quot;plane01/plane01.hex.xz&quot;                    
-## [23] &quot;plane01/space.hex.xz&quot;                      
-## [24] &quot;plane02/izmg16-plane02.hex.xz&quot;             
-## [25] &quot;plane0E/plane0E-nonprinting.hex.xz&quot;        
-## [26] &quot;plane0E/plane0E.hex.xz&quot;                    
-## [27] &quot;plane0Fcsur/plane0Fcsur-nonprinting.hex.xz&quot;
-## [28] &quot;plane0Fcsur/plane0Fcsur.hex.xz&quot;            
-## [29] &quot;precompiled/unifont_jp_sample.hex.xz&quot;      
-## [30] &quot;precompiled/unifont_jp.hex.xz&quot;             
-## [31] &quot;precompiled/unifont_sample.hex.xz&quot;         
-## [32] &quot;precompiled/unifont_upper_sample.hex.xz&quot;   
-## [33] &quot;precompiled/unifont_upper.hex.xz&quot;          
-## [34] &quot;precompiled/unifont.hex.xz&quot;</code></pre>
+##  [2] &quot;plane00/alt/izmg16-plane00-FFxx.hex.xz&quot;    
+##  [3] &quot;plane00/alt/mongolian-vertical.hex.xz&quot;     
+##  [4] &quot;plane00/alt/phags-pa-vertical.hex.xz&quot;      
+##  [5] &quot;plane00/alt/quad-width.hex.xz&quot;             
+##  [6] &quot;plane00/alt/reiwa-vertical.hex.xz&quot;         
+##  [7] &quot;plane00/alt/uni0009-orig.hex.xz&quot;           
+##  [8] &quot;plane00/copyleft.hex.xz&quot;                   
+##  [9] &quot;plane00/custom00.hex.xz&quot;                   
+## [10] &quot;plane00/hangul-syllables.hex.xz&quot;           
+## [11] &quot;plane00/izmg16-plane00.hex.xz&quot;             
+## [12] &quot;plane00/omit.hex.xz&quot;                       
+## [13] &quot;plane00/plane00-nonprinting.hex.xz&quot;        
+## [14] &quot;plane00/plane00-unassigned.hex.xz&quot;         
+## [15] &quot;plane00/pua.hex.xz&quot;                        
+## [16] &quot;plane00/spaces.hex.xz&quot;                     
+## [17] &quot;plane00/unifont-base.hex.xz&quot;               
+## [18] &quot;plane00/wqy.hex.xz&quot;                        
+## [19] &quot;plane00csur/plane00csur-nonprinting.hex.xz&quot;
+## [20] &quot;plane00csur/plane00csur-spaces.hex.xz&quot;     
+## [21] &quot;plane00csur/plane00csur-unassigned.hex.xz&quot; 
+## [22] &quot;plane00csur/plane00csur.hex.xz&quot;            
+## [23] &quot;plane01/plane01-nonprinting.hex.xz&quot;        
+## [24] &quot;plane01/plane01-noscript.hex.xz&quot;           
+## [25] &quot;plane01/plane01-space.hex.xz&quot;              
+## [26] &quot;plane01/plane01-unassigned.hex.xz&quot;         
+## [27] &quot;plane01/plane01.hex.xz&quot;                    
+## [28] &quot;plane01/space.hex.xz&quot;                      
+## [29] &quot;plane02/izmg16-plane02.hex.xz&quot;             
+## [30] &quot;plane02/zh-plane02.hex.xz&quot;                 
+## [31] &quot;plane03/zh-plane03.hex.xz&quot;                 
+## [32] &quot;plane0E/plane0E-nonprinting.hex.xz&quot;        
+## [33] &quot;plane0E/plane0E-unassigned.hex.xz&quot;         
+## [34] &quot;plane0E/plane0E.hex.xz&quot;                    
+## [35] &quot;plane0Fcsur/plane0Fcsur-nonprinting.hex.xz&quot;
+## [36] &quot;plane0Fcsur/plane0Fcsur.hex.xz&quot;            
+## [37] &quot;precompiled/unifont_jp_sample.hex.xz&quot;      
+## [38] &quot;precompiled/unifont_jp.hex.xz&quot;             
+## [39] &quot;precompiled/unifont_sample.hex.xz&quot;         
+## [40] &quot;precompiled/unifont_upper_sample.hex.xz&quot;   
+## [41] &quot;precompiled/unifont_upper.hex.xz&quot;          
+## [42] &quot;precompiled/unifont.hex.xz&quot;</code></pre>
 </div>
 <div id="examples" class="section level2">
 <h2><a name="examples">Examples</a></h2>
@@ -240,44 +456,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;bittermelon&quot;</span>) <span class="co"># remotes::install_github(&quot;trevorld/bittermelon&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(<span class="st">&quot;bittermelon&quot;</span>) <span class="co"># remotes::install_github(&quot;trevorld/bittermelon&quot;)</span></span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;bittermelon&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:base&#39;:
 ## 
 ##     which</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;hexfont&quot;</span>) <span class="co"># remotes::install_github(&quot;trevorld/hexfont&quot;)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(font <span class="ot">&lt;-</span> <span class="fu">unifont</span>()) <span class="co"># Unifont is a **big** font</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">library</span>(<span class="st">&quot;hexfont&quot;</span>) <span class="co"># remotes::install_github(&quot;trevorld/hexfont&quot;)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">system.time</span>(font &lt;-<span class="st"> </span><span class="kw">unifont</span>()) <span class="co"># Unifont is a **big** font</span></span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##  52.149   0.148  52.324</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(font) <span class="sc">|&gt;</span> <span class="fu">prettyNum</span>(<span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>) <span class="co"># number of glyphs</span></span></code></pre></div>
-<pre><code>## [1] &quot;79,162&quot;</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(font) <span class="sc">|&gt;</span> <span class="fu">format</span>(<span class="at">units =</span> <span class="st">&quot;MB&quot;</span>) <span class="co"># memory used</span></span></code></pre></div>
-<pre><code>## [1] &quot;118.4 Mb&quot;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Faster to load from a cache</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(font, <span class="st">&quot;unifont.rds&quot;</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(font <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;unifont.rds&quot;</span>))</span></code></pre></div>
+##  96.128   0.120  96.268</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">length</span>(font) <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">prettyNum</span>(<span class="dt">big.mark =</span> <span class="st">&quot;,&quot;</span>) <span class="co"># number of glyphs</span></span></code></pre></div>
+<pre><code>## [1] &quot;123,234&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">object.size</span>(font) <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">format</span>(<span class="dt">units =</span> <span class="st">&quot;MB&quot;</span>) <span class="co"># memory used</span></span></code></pre></div>
+<pre><code>## [1] &quot;189 Mb&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co"># Faster to load from a cache</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">saveRDS</span>(font, <span class="st">&quot;unifont.rds&quot;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">system.time</span>(font &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;unifont.rds&quot;</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.411   0.000   0.411</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or just load the subset of GNU Unifont you need</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="st">&quot;Ｒ很棒！&quot;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(font_s <span class="ot">&lt;-</span> <span class="fu">unifont</span>(<span class="at">ucp =</span> <span class="fu">str2ucp</span>(s)))</span></code></pre></div>
+##   0.643   0.000   0.644</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="co"># Or just load the subset of GNU Unifont you need</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>s &lt;-<span class="st"> &quot;Ｒ很棒！&quot;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="kw">system.time</span>(font_s &lt;-<span class="st"> </span><span class="kw">unifont</span>(<span class="dt">ucp =</span> <span class="kw">str2ucp</span>(s)))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.662   0.000   0.662</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mandarin Chinese</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_bm_bitmap</span>(s, <span class="at">font =</span> font_s) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
+##    0.61    0.00    0.61</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="co"># Mandarin Chinese</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">as_bm_bitmap</span>(s, <span class="dt">font =</span> font_s) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
 <pre><code>##                     █ ▄▄▄▄▄▄▄      █      █                     
-##                   ▄▀  █     █      █  ▀▀▀▀█▀▀▀▀                 
-##   ██▀▀▀▀▀▀▀▀▄▄   ▀  █ █▀▀▀▀▀█   ▀▀▀█▀▀ ▀▀█▀▀▀▀         ██       
-##   ██        ██    ▄█  █▄▄▄▄▄█     ██▄ ▀▀█▀▀▀█▀▀        ██       
-##   ██▀▀▀▀██▀▀    ▄▀ █  █  █  ▄▀   █ █ ▀▄▀  █  ▀▄        ██       
-##   ██      ██       █  █   █▀    ▀  █    ▀▀█▀▀          ▀▀       
-##   ██        ██     █  █ ▄  ▀▄      █  ▀▀▀▀█▀▀▀▀        ██       
+##    ▄▄▄▄▄▄▄        ▄▀  █     █      █  ▀▀▀▀█▀▀▀▀      ▄█▄        
+##     █     ▀▄     ▀  █ █▀▀▀▀▀█   ▀▀▀█▀▀ ▀▀█▀▀▀▀       ███        
+##     █     ▄▀      ▄█  █▄▄▄▄▄█     ██▄ ▀▀█▀▀▀█▀▀      ▀█▀        
+##     █▀▀▀█▀      ▄▀ █  █  █  ▄▀   █ █ ▀▄▀  █  ▀▄       █         
+##     █    ▀▄        █  █   █▀    ▀  █    ▀▀█▀▀                   
+##    ▄█▄    ▄█▄      █  █ ▄  ▀▄      █  ▀▀▀▀█▀▀▀▀       █         
 ##                    █  █▀     ▀▀    █      █</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Emoji</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_bm_bitmap</span>(<span class="st">&quot;🐭🐲🐵&quot;</span>, <span class="at">font =</span> font) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="co"># Emoji</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="kw">as_bm_bitmap</span>(<span class="st">&quot;🐭🐲🐵&quot;</span>, <span class="dt">font =</span> font) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
 <pre><code>##   ▄▄       ▄▄           ▄▄▄            ▄▄       
 ## ▄▀  ▀▄▄▄▄▄▀  ▀▄       ▄█▀           ▄█▀██▀█▄    
 ## █    ▀   ▀    █      ▄████       ▄▀█ ▄▄  ▄▄ █▀▄ 
@@ -286,11 +502,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   ▀▄  ▀▀▀  ▄▀   ▀▀▀▀▀███▀▀█████    █ ▀▄▄▄▄▀ █   
 ##     ▀▀▄▄▄▀▀        ▄███   ████▀     ▀▀▄▄▄▄▀▀    
 ##                   ▀▀▀     ▀▀▀</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Klingon</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_bm_list</span>(<span class="st">&quot;&quot;</span>, <span class="at">font =</span> font) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_pad</span>(<span class="at">type =</span> <span class="st">&quot;trim&quot;</span>, <span class="at">left =</span> 1L, <span class="at">right =</span> 1L) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_call</span>(cbind) <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="co"># Klingon</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="kw">as_bm_list</span>(<span class="st">&quot;&quot;</span>, <span class="dt">font =</span> font) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_pad</span>(<span class="dt">type =</span> <span class="st">&quot;trim&quot;</span>, <span class="dt">left =</span> 1L, <span class="dt">right =</span> 1L) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_call</span>(cbind) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
 <pre><code>##                                                                               
 ##     ▄█▄ ▄▄██▀▀  ▀▀████████               ▄▀       ▄█▄    ▄█▀  ▀█▄    ▄▄       
 ##  ▄▄██████▀            ▀██ ▀            ▄█▀       ███▀▀  ███    ██   ▀████████ 
@@ -299,14 +515,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##          █▄          ▀█▄      ██▀▀▀▀▀▀███    ▄██████▄       ▀█▄     ▄█▀   █▀  
 ##           ▀▄           ▀▀▄   ▄▀        ▀█▄         ▀▀▄        ▀▀▄  ▄▀    ▀    
 ## </code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tengwar with combining glyphs</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>bml <span class="ot">&lt;-</span> <span class="fu">as_bm_list</span>(<span class="st">&quot;&quot;</span>, <span class="at">font =</span> font)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>to_raise <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">names</span>(bml) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;U+E04A&quot;</span>, <span class="st">&quot;U+E04E&quot;</span>))</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>bml[to_raise] <span class="ot">&lt;-</span> <span class="fu">bm_shift</span>(bml[to_raise], <span class="at">top =</span> 1L)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>bml <span class="sc">|&gt;</span> <span class="fu">bm_compose</span>(<span class="at">pua_combining =</span> <span class="fu">unifont_combining</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_pad</span>(<span class="at">type =</span> <span class="st">&quot;trim&quot;</span>, <span class="at">left =</span> 1L, <span class="at">right =</span> 1L) <span class="sc">|&gt;</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_call</span>(cbind) <span class="sc">|&gt;</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="co"># Tengwar with combining glyphs</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>bml &lt;-<span class="st"> </span><span class="kw">as_bm_list</span>(<span class="st">&quot;&quot;</span>, <span class="dt">font =</span> font)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>to_raise &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">names</span>(bml) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;U+E04A&quot;</span>, <span class="st">&quot;U+E04E&quot;</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a>bml[to_raise] &lt;-<span class="st"> </span><span class="kw">bm_shift</span>(bml[to_raise], <span class="dt">top =</span> 1L)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a>bml <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">bm_compose</span>(<span class="dt">pua_combining =</span> <span class="kw">unifont_combining</span>()) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_pad</span>(<span class="dt">type =</span> <span class="st">&quot;trim&quot;</span>, <span class="dt">left =</span> 1L, <span class="dt">right =</span> 1L) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_call</span>(cbind) <span class="op">|</span><span class="er">&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">bm_compress</span>(<span class="st">&quot;v&quot;</span>)</span></code></pre></div>
 <pre><code>##                  ▄                    ██       ▄      ▄ ▄   
 ##                 █ ▀                 ▄▄  ▄▄    █ ▀    █ █ ▀  
 ##                 ▀                   ▀▀  ▀▀    ▀      ▀ ▀    
@@ -320,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><a name="license">License</a></h2>
 <p>The overall license for this package is GPL (&gt;=2) but the bundled hex font files are also available under more permissive terms. Excerpt from <code>font/COPYING</code></p>
 <blockquote>
-<p>License for font/plane00/jiskan16-plane00.hex and font/plane02/jiskan16-plane02.hex:</p>
+<p>License for <code>font/plane00/jiskan16-plane00.hex</code> and <code>font/plane02/jiskan16-plane02.hex</code>:</p>
 <pre><code> These two files are in the Public Domain.  They were created
  from Public Domain BDF font files jiskan16-2004-1.bdf and
  jiskan16-2000-2.bdf.</code></pre>
