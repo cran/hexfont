@@ -16,15 +16,21 @@ vignette: >
 
 ## <a name="overview">Overview</a>
 
-This is an R data package that includes most "hex" font files from the [GNU Unifont](http://unifoundry.com/unifont/index.html) project compressed by `xz`.  It includes a convenience function that loads several of them as a [{bittermelon}](https://github.com/trevorld/bittermelon) `bm_font()` object.  GNU Unifont is a duospaced bitmap font (8x16 and 16x16 glyphs) that pretty much covers all of the official Unicode glyphs plus several of the artificial scripts in the [(Under-)ConScript Unicode Registry](http://www.kreativekorp.com/ucsur/).
+This is an R data package that includes most "hex" font files from the [GNU Unifont](https://unifoundry.com/unifont/index.html) project compressed by `xz`.  It includes a convenience function that loads several of them as a [{bittermelon}](https://github.com/trevorld/bittermelon) `bm_font()` object.  GNU Unifont is a duospaced bitmap font (8x16 and 16x16 glyphs) that pretty much covers all of the official Unicode glyphs plus several of the artificial scripts in the [(Under-)ConScript Unicode Registry](https://www.kreativekorp.com/ucsur/).
 
 ## <a name="hex">Included hex font files</a>
 
-`{hexfont}` includes most of the hex font files included in the [GNU Unifont](http://unifoundry.com/unifont/index.html)
+`{hexfont}` includes most of the hex font files included in the [GNU Unifont](https://unifoundry.com/unifont/index.html)
 source code distribution.  The version number is stripped from the file names in the `precompiled` directory and
 the hex fonts are all compressed by `xz` but other than that the hex fonts are otherwise unchanged.  Due to CRAN size limitations we omit the "precompiled" `unifont_all` hex file (this is presumably the concatenation of the "precompiled" `unifont` and `unifont_upper` hex files).
 
-
+```{css, echo=FALSE}
+pre,code {
+    font-family: Dejavu Sans Mono,FreeMono,monospace;
+    line-height: 1.0;
+    font-size: 100%;
+}
+```
 
 ```r
 hex_dir <- system.file("font", package = "hexfont")
@@ -87,25 +93,12 @@ The main function `unifont()` loads in several GNU Unifont hex files at the same
 | csur | Include (Under-)Conscript Unicode Registry glyphs | `TRUE` |
 | sample | Add circle to "Combining" characters | `FALSE` | 
 | ucp | Character vector of Unicode Code Points to only load | `NULL` |
+| cache | Read/write a pre-compiled font from/to `tools::R_user_dir("hexfont", "cache")` | `FALSE` |
 
 
 ```r
-library("bittermelon") # remotes::install_github("trevorld/bittermelon")
-```
-
-```
-## 
-## Attaching package: 'bittermelon'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     which
-```
-
-```r
-library("hexfont") # remotes::install_github("trevorld/hexfont")
+library("bittermelon")
+library("hexfont")
 system.time(font <- unifont()) # Unifont is a **big** font
 ```
 
@@ -132,8 +125,7 @@ object.size(font) |> format(units = "MB") # memory used
 
 ```r
 # Faster to load from a cache
-saveRDS(font, "unifont.rds")
-system.time(font <- readRDS("unifont.rds"))
+system.time(font <- unifont(cache = TRUE))
 ```
 
 ```

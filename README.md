@@ -1,7 +1,7 @@
 # hexfont <img src="man/figures/logo.png" align="right" width="200px" alt="hexfont hex sticker">
 
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/hexfont)](https://cran.r-project.org/package=hexfont)
-[![R-CMD-check](https://github.com/trevorld/hexfont/workflows/R-CMD-check/badge.svg)](https://github.com/trevorld/hexfont/actions)
+[![R-CMD-check](https://github.com/trevorld/hexfont/actions/workflows/R-CMD-check.yaml/badge.svg?branch=main)](https://github.com/trevorld/hexfont/actions)
 
 ### Table of Contents
 
@@ -14,16 +14,16 @@
 
 ## <a name="overview">Overview</a>
 
-This is an R data package that includes most "hex" font files from the [GNU Unifont](http://unifoundry.com/unifont/index.html) project compressed by `xz`.  It includes a convenience function that loads several of them as a [{bittermelon}](https://github.com/trevorld/bittermelon) `bm_font()` object.  GNU Unifont is a duospaced bitmap font (8x16 and 16x16 glyphs) that pretty much covers all of the official Unicode glyphs plus several of the artificial scripts in the [(Under-)ConScript Unicode Registry](http://www.kreativekorp.com/ucsur/).
+This is an R data package that includes most "hex" font files from the [GNU Unifont](https://unifoundry.com/unifont/index.html) project compressed by `xz`.  It includes a convenience function that loads several of them as a [{bittermelon}](https://github.com/trevorld/bittermelon) `bm_font()` object.  GNU Unifont is a duospaced bitmap font (8x16 and 16x16 glyphs) that pretty much covers all of the official Unicode glyphs plus several of the artificial scripts in the [(Under-)ConScript Unicode Registry](https://www.kreativekorp.com/ucsur/).
 
 ## <a name="hex">Included hex font files</a>
 
-`{hexfont}` includes most of the hex font files included in the [GNU Unifont](http://unifoundry.com/unifont/index.html)
+`{hexfont}` includes most of the hex font files included in the [GNU Unifont](https://unifoundry.com/unifont/index.html)
 source code distribution.  The version number is stripped from the file names in the `precompiled` directory and
 the hex fonts are all compressed by `xz` but other than that the hex fonts are otherwise unchanged.  Due to CRAN size limitations we omit the "precompiled" `unifont_all` hex file (this is presumably the concatenation of the "precompiled" `unifont` and `unifont_upper` hex files).
 
 
-```r
+``` r
 hex_dir <- system.file("font", package = "hexfont")
 list.files(hex_dir, pattern = ".hex.xz", recursive = TRUE)
 ```
@@ -59,18 +59,19 @@ list.files(hex_dir, pattern = ".hex.xz", recursive = TRUE)
 ## [28] "plane01/space.hex.xz"                      
 ## [29] "plane02/izmg16-plane02.hex.xz"             
 ## [30] "plane02/zh-plane02.hex.xz"                 
-## [31] "plane03/zh-plane03.hex.xz"                 
-## [32] "plane0E/plane0E-nonprinting.hex.xz"        
-## [33] "plane0E/plane0E-unassigned.hex.xz"         
-## [34] "plane0E/plane0E.hex.xz"                    
-## [35] "plane0Fcsur/plane0Fcsur-nonprinting.hex.xz"
-## [36] "plane0Fcsur/plane0Fcsur.hex.xz"            
-## [37] "precompiled/unifont_jp_sample.hex.xz"      
-## [38] "precompiled/unifont_jp.hex.xz"             
-## [39] "precompiled/unifont_sample.hex.xz"         
-## [40] "precompiled/unifont_upper_sample.hex.xz"   
-## [41] "precompiled/unifont_upper.hex.xz"          
-## [42] "precompiled/unifont.hex.xz"
+## [31] "plane03/jp-plane03.hex.xz"                 
+## [32] "plane03/zh-plane03.hex.xz"                 
+## [33] "plane0E/plane0E-nonprinting.hex.xz"        
+## [34] "plane0E/plane0E-unassigned.hex.xz"         
+## [35] "plane0E/plane0E.hex.xz"                    
+## [36] "plane0Fcsur/plane0Fcsur-nonprinting.hex.xz"
+## [37] "plane0Fcsur/plane0Fcsur.hex.xz"            
+## [38] "precompiled/unifont_jp_sample.hex.xz"      
+## [39] "precompiled/unifont_jp.hex.xz"             
+## [40] "precompiled/unifont_sample.hex.xz"         
+## [41] "precompiled/unifont_upper_sample.hex.xz"   
+## [42] "precompiled/unifont_upper.hex.xz"          
+## [43] "precompiled/unifont.hex.xz"
 ```
 
 ## <a name="examples">Examples</a>
@@ -84,61 +85,47 @@ The main function `unifont()` loads in several GNU Unifont hex files at the same
 | csur | Include (Under-)Conscript Unicode Registry glyphs | `TRUE` |
 | sample | Add circle to "Combining" characters | `FALSE` | 
 | ucp | Character vector of Unicode Code Points to only load | `NULL` |
+| cache | Read/write a pre-compiled font from/to `tools::R_user_dir("hexfont", "cache")` | `FALSE` |
 
 
-```r
-library("bittermelon") # remotes::install_github("trevorld/bittermelon")
-```
-
-```
-## 
-## Attaching package: 'bittermelon'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     which
-```
-
-```r
-library("hexfont") # remotes::install_github("trevorld/hexfont")
+``` r
+library("bittermelon")
+library("hexfont")
 system.time(font <- unifont()) # Unifont is a **big** font
 ```
 
 ```
 ##    user  system elapsed 
-##  96.170   0.103  96.292
+## 147.807   0.190 148.030
 ```
 
-```r
+``` r
 length(font) |> prettyNum(big.mark = ",") # number of glyphs
 ```
 
 ```
-## [1] "123,234"
+## [1] "125,472"
 ```
 
-```r
+``` r
 object.size(font) |> format(units = "MB") # memory used
 ```
 
 ```
-## [1] "189 Mb"
+## [1] "198.7 Mb"
 ```
 
-```r
+``` r
 # Faster to load from a cache
-saveRDS(font, "unifont.rds")
-system.time(font <- readRDS("unifont.rds"))
+system.time(font <- unifont(cache = TRUE))
 ```
 
 ```
 ##    user  system elapsed 
-##    0.65    0.00    0.65
+##   0.758   0.000   0.758
 ```
 
-```r
+``` r
 # Or just load the subset of GNU Unifont you need
 s <- "Ｒ很棒！"
 system.time(font_s <- unifont(ucp = str2ucp(s)))
@@ -146,10 +133,10 @@ system.time(font_s <- unifont(ucp = str2ucp(s)))
 
 ```
 ##    user  system elapsed 
-##   0.606   0.004   0.610
+##   0.740   0.000   0.739
 ```
 
-```r
+``` r
 # Mandarin Chinese
 as_bm_bitmap(s, font = font_s) |>
     bm_compress("v")
@@ -166,7 +153,7 @@ as_bm_bitmap(s, font = font_s) |>
 ##                    █  █▀     ▀▀    █      █
 ```
 
-```r
+``` r
 # Emoji
 as_bm_bitmap("🐭🐲🐵", font = font) |>
     bm_compress("v")
@@ -183,7 +170,7 @@ as_bm_bitmap("🐭🐲🐵", font = font) |>
 ##                   ▀▀▀     ▀▀▀
 ```
 
-```r
+``` r
 # Klingon
 as_bm_list("", font = font) |>
     bm_pad(type = "trim", left = 1L, right = 1L) |>
@@ -202,7 +189,7 @@ as_bm_list("", font = font) |>
 ## 
 ```
 
-```r
+``` r
 # Tengwar with combining glyphs
 bml <- as_bm_list("", font = font)
 to_raise <- which(names(bml) %in% c("U+E04A", "U+E04E"))
